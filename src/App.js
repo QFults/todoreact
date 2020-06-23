@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import ItemContext from './utils/ItemContext'
+import Form from './components/Form'
+import List from './components/List'
+import Navbar from './components/Navbar'
 
 const App = () => {
 
@@ -20,29 +24,13 @@ const App = () => {
     })
     setItemState({ ...itemState, items, item: '' })
   }
-  
+
   return (
-    <>
-      <form>
-        <p>
-          <label htmlFor="item">item</label>
-          <input
-            type="text"
-            name="item"
-            id="item"
-            value={itemState.item}
-            onChange={itemState.handleInputChange} />
-        </p>
-        <p>
-          <button onClick={itemState.handleAddItem}>Add Item</button>
-        </p>
-      </form>
-      <ul>
-        {
-          itemState.items.map(item => <li>{item.text}</li>)
-        }
-      </ul>
-    </>
+    <ItemContext.Provider value={itemState}>
+      <Navbar />
+      <Form />
+      <List />
+    </ItemContext.Provider>
   )
 }
 
