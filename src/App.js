@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import ItemContext from './utils/ItemContext'
 import Form from './components/Form'
-import List from './components/List'
+import FullList from './components/FullList'
 import Navbar from './components/Navbar'
+import Grid from '@material-ui/core/Grid'
 
 const App = () => {
 
@@ -25,11 +26,21 @@ const App = () => {
     setItemState({ ...itemState, items, item: '' })
   }
 
+  itemState.handleRemoveItem = () => {
+    
+  }
+
   return (
     <ItemContext.Provider value={itemState}>
       <Navbar />
-      <Form />
-      <List />
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Form />
+        </Grid>
+        <Grid item xs={6}>
+          <FullList />
+        </Grid>
+      </Grid>
     </ItemContext.Provider>
   )
 }
